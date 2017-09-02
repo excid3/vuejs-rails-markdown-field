@@ -1,6 +1,6 @@
 <template>
   <div>
-    <textarea name="post[body]" v-model="body"></textarea>
+    <textarea :name="name" v-model="body"></textarea>
     <div>{{ markdownBody }}</div>
   </div>
 </template>
@@ -11,12 +11,14 @@ export default {
   // Just setup the component with empty content so we have something to start with
   data: function () {
     return {
+      name: "",
       body: ""
     }
   },
 
   // This is the magic part where we populate the Vue widget with the data from the Rails input
   beforeMount: function() {
+    this.name = this.$el.name
     this.body = this.$el.value
   },
 
